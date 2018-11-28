@@ -7,7 +7,7 @@ $this->title = 'Frontend';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Hello Pressiix!</h1>
+        <h1>Hello Hahahaha</h1>
     </div>
 
     <div class="body-content">
