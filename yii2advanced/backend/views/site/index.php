@@ -6,9 +6,9 @@ use yii\helpers\Html;
 $this->title = 'Backend';
 /* @var $this yii\web\View */
 use common\assets\ChartJsAsset;
-use common\assets\FontawesomeAsset;
+//use common\assets\FontawesomeAsset;
 ChartJsAsset::register($this);
-FontawesomeAsset::register($this);
+//FontawesomeAsset::register($this);
 $this->registerCss("
 
 ");

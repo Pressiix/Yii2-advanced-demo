@@ -10,13 +10,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div>
-    <h1><?= Html::encode($this->title) ?></h1>
-
-
-    <?php $form = ActiveForm::begin(['id' => 'form']); ?>
-    
+    <!--<h1><?php /*Html::encode($this->title)*/ ?></h1>-->
+    <div class="panel panel-red ">
+        <div class="panel-heading text-center" style="margin-bottom : 20px;"><h1><b>Example input forms</b></h1></div>
         <div class="panel-body">  
             <div class="row">   <!----------------------------------ROW1----------------------------------------->
+
+    <?php $form = ActiveForm::begin(['id' => 'form']); ?>
                 <div class="col-md-6"> <!--COLUMN1-->
                     <div class="panel panel-red" >
                         <div class="panel-heading"> <h5><b>Input fields</b></h5></div>
@@ -37,30 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 // Format 2
                  //echo $form->field($model, 'text')->dropDownList($ArrayData,['prompt'=>'Choose...']); 
                  ?>
-
-                <?php 
-                        //Single Date picker
-                        echo '<h5><b>Date Picker</b></h5>';
-                        echo '<div class="input-group drp-container">';
-                        /*echo $form->field($model, 'text')->widget(DateControl::classname(), [
-                            'type'=>DateControl::FORMAT_DATE,
-                            'ajaxConversion'=>false,
-                            'widgetOptions' => [
-                                'pluginOptions' => [
-                                    'autoclose' => true
-                                ]
-                            ]
-                        ]);*/
-                        
-                        //Date and Time Picker
-                        echo '<h5><b>DateTime Picker</b></h5>';
-                        echo '<div class="input-group drp-container">';
-                        /*echo $form->field($model, 'datetime_1')->widget(DateControl::classname(), [
-                            'type'=>DateControl::FORMAT_DATETIME
-                        ]);*/
-                ?>
-                        </div>
-                    </div>
+                        </div> 
+                    </div> 
                 </div> 
                 <div class="col-md-6">  <!--COLUMN2-->
                 <div class="panel panel-red" >
@@ -96,8 +74,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ?>
                                     </div>
                                 </div>
-
-                                <div class="panel panel-red" >
+                                
+                                <div class="panel panel-red " >
                                     <div class="panel-heading"><h5><b>Button</b></h5></div>
                                     <div class="panel-body">
                                         <div class="form-group">
@@ -109,9 +87,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-                        </div>
-                </div> 
-            </div>   <!------------------------------------------------------------------------------->
+                                </div>   <!------------------------------------------------------------------------------->
+                </div>
+                </div>
             <?php ActiveForm::end(); ?>
+</div>
+</div>
+</div>
 </div>

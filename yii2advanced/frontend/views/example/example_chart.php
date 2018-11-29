@@ -103,7 +103,7 @@ var chart = new Chart(ctx, {
 ?>
 
     <div class="panel panel-red ">
-        <div class="panel-heading text-center" style="margin-bottom : 20px;"><h1><b>Chart</b></h1></div>
+        <div class="panel-heading text-center" style="margin-bottom : 20px;"><h1><b>Example Chart.js</b></h1></div>
         <div class="panel-body">  
             <div class="row">   <!----------------------------------ROW1----------------------------------------->
                 <div class="col-md-6"> <!--COLUMN1-->
