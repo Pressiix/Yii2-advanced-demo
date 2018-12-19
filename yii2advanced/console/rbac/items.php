@@ -1,24 +1,23 @@
 <?php
 return [
-    'createPost' => [
+    'view_form' => [
         'type' => 2,
-        'description' => 'Create a post',
+        'description' => 'view_form',
     ],
-    'updatePost' => [
+    'view_chart' => [
         'type' => 2,
-        'description' => 'Update post',
+        'description' => 'view_chart',
     ],
-    'author' => [
+    'User' => [
         'type' => 1,
         'children' => [
-            'createPost',
+            'view_form',
         ],
     ],
-    'admin' => [
+    'Admin' => [
         'type' => 1,
         'children' => [
-            'updatePost',
-            'author',
+            'User',
         ],
     ],
 ];
