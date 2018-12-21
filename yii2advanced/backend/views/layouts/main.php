@@ -8,16 +8,16 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
+use common\widgets\Alert;   //#295cad
 $this->registerCss("
     .navbar-pink{
-        background-color: #cd93cc;
-        border-color: #cd93cc;
+        background-color: #4571b7;
+        border-color: #4571b7;   
     }
     .navbar-pink .navbar-brand{color:white}
 
     .navbar-pink .navbar-nav > li > a:hover, .navbar-pink .navbar-nav > li > a:focus {
-        background-color: #A475A3;
+        background-color: #295cad;
         color: #white;
     }
 
@@ -25,18 +25,18 @@ $this->registerCss("
     .navbar-nav>.active>a:focus,.navbar-pink .navbar-nav>
     .active>a:hover{
         color:#fff;
-        background-color:#A475A3;
+        background-color:#295cad;
     }
 
     .navbar-pink .navbar-nav>li>a{color:white}
 
     .navbar-pink .navbar-nav>.open>a,.navbar-pink .navbar-nav>.open>a:focus,
     .navbar-pink .navbar-nav>.open>a:hover{
-        color:#fff;background-color:#A475A3;
+        color:#fff;background-color:#295cad;
     }
 
     .dropdown-menu > li > a:hover {
-        background-color: #A475A3;
+        background-color: #295cad;
         color:white;
         background-image: none;
     }
@@ -45,7 +45,7 @@ $this->registerCss("
         color:white;
     }
     .btn-link.logout:hover{
-        background-color:#A475A3;
+        background-color:#295cad;
         text-decoration:none
     }
 
@@ -54,7 +54,7 @@ $this->registerCss("
     }
     .panel-pink>.panel-heading{
         color:white;
-        background-color:#D29DD1;
+        background-color:#6185bf;
         border-color:#ddd
     }
     .panel-pink>.panel-heading+.panel-collapse>.panel-body{
@@ -78,7 +78,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(/*$this->title*/'Admin Panel') ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -87,8 +87,9 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => /*Yii::$app->name*/'Admin Panel',
         'brandUrl' => Yii::$app->homeUrl,
+        'innerContainerOptions' => ['class' => 'container-fluid'],    // full screen Navigation bar
         'options' => [
             'class' => 'navbar-pink navbar-fixed-top',
         ],
@@ -102,13 +103,14 @@ AppAsset::register($this);
     } else {
         $menuItems = [
             ['label' => 'Home', 'url' => ['/site/index']],
-            [
+            ['label' => 'Gii', 'url' => ['/gii'],'linkOptions' => ['target'=>'_blank']],
+            /*[
                 'label' => 'Master Data',
                 'items' => [
                      ['label' => 'Product data', 'url' => ['/product/index']],
                      ['label' => 'Product types', 'url' => ['/product-type/index']],
                 ],
-            ],
+            ],*/
             ['label' => 'Users', 'url' => ['/user/index']],
         ];
         $menuItems[] = '<li>'
@@ -127,7 +129,7 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="container-fluid" style="padding-top: 70px; width:99%;">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

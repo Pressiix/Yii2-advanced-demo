@@ -7,9 +7,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
+//use common\assets\FontawesomeAsset;
 use common\widgets\Alert;
 AppAsset::register($this);
-
+//FontawesomeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -19,15 +20,16 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(/*$this->title*/'Demo') ?></title>
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div class="wrap" style="background-color: #ededf2;">
     <?php
     NavBar::begin([
+        //'brandLabel' => Html::img('https://wiki.videolan.org/images/Ubuntu-logo.png', ['alt'=>'Demo', 'class' => '','style' => 'padding: 0px;  height: 100%;']),
         'brandLabel' => 'Demo',
         'brandUrl' => Yii::$app->homeUrl,
         'innerContainerOptions' => ['class' => 'container-fluid'],    // full screen Navigation bar
@@ -36,18 +38,18 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => '<span class="glyphicon glyphicon-home"></span> Home', 'url' => ['/site/index']],
+        ['label' => '<span class="glyphicon glyphicon-info-sign"></span> About', 'url' => ['/site/about']],
+        ['label' => '<span class="glyphicon glyphicon-envelope"></span> Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => '<span class="glyphicon glyphicon-home"></span> Home', 'url' => ['/site/index']],
+            ['label' => '<span class="glyphicon glyphicon-info-sign"></span> About', 'url' => ['/site/about']],
+            ['label' => '<span class="glyphicon glyphicon-envelope"></span> Contact', 'url' => ['/site/contact']],
             [
                 'label' => 'Example',
                 'items' => [
@@ -69,6 +71,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
+        'encodeLabels' => false,
     ]);
     NavBar::end();
 
@@ -79,7 +82,7 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         
-    <div class="col-md-11">
+    <div class="col-md-12">
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
@@ -87,10 +90,9 @@ AppAsset::register($this);
 </div>
 
 <footer class="footer">
-<div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
+        <div class=" hidden-xs text-center">
+        <strong>Copyright &copy;  <a href="https://www.facebook.com/pressiiz">Watcharaphon Piamphuetna</a>.</strong> All rights reserved.
         </div>
-        &nbsp;&nbsp;<strong>Copyright &copy;  <a href="https://www.facebook.com/pressiiz">Watcharaphon Piamphuetna</a>.</strong> All rights reserved.
 </footer>
 
 <?php $this->endBody() ?>

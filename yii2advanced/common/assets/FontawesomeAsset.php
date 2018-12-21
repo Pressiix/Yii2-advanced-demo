@@ -19,13 +19,13 @@ class FontawesomeAsset extends AssetBundle
     /**
      * @inherit
      */
-    public $sourcePath = '@vendor/bower/fontawesome';
+    public $sourcePath = '@vendor/bower-asset/fontawesome';
 
     /**
      * @inherit
      */
     public $css = [
-        'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+        'css/fontawesome.min.css',
     ];
 
     /**
@@ -33,12 +33,10 @@ class FontawesomeAsset extends AssetBundle
      * Set publish options to copy only necessary files (in this case css and font folders)
      * @codeCoverageIgnore
      */
-    public function init()
-    {
-        parent::init();
-
-        $this->publishOptions['beforeCopy'] = function ($from, $to) {
-            return preg_match('%(/|\\\\)(fonts|css)%', $from);
-        };
-    }
+    public $publishOptions = [
+        'only' => [
+            'fonts/',
+            'css/',
+        ]
+    ];
 }
