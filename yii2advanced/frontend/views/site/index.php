@@ -1,5 +1,6 @@
 <?php
 use aki\imageslider\ImageSlider;
+//use segpacto\yii2-httpfull;
 use common\assets\FullCalendarAsset;
 use yii\web\View;
 //use common\assets\FontawesomeAsset;
@@ -8,6 +9,44 @@ FullCalendarAsset::register($this);
 //FontawesomeAsset::register($this);
 $this->title = 'Frontend';
 
+/*------------------------------------NETPIE VALVE STATUS------------------------------------ */
+$uri = 'https://api.netpie.io/topic/NETPIE2VALVE/relaystat?retain&auth=WcTxK4EMocRJCcF:H0AHhsFat0L0AIBmdmR3IhN6J';
+$response = \HttpFull\Request::get($uri)->send();
+$result = json_decode($response->body, true);
+$valve_status = $result[0]['payload'];
+
+$valve_status_color1 = '';
+$valve_status_color2 = '';
+$valve_status_text1 = '';
+$valve_status_text2 = '';
+  if($valve_status){
+       if($valve_status == '1'){
+            $valve_status_color1 = 'badge progress-bar-success';
+            $valve_status_color2 = 'badge progress-bar-primary';
+            $valve_status_text1 = 'On';
+            $valve_status_text2 = 'Off';
+       } 
+       if($valve_status == '2'){
+            $valve_status_color1 = 'badge progress-bar-primary';
+            $valve_status_color2 = 'badge progress-bar-success';
+            $valve_status_text1 = 'Off';
+            $valve_status_text2 = 'On';
+        }  
+        if($valve_status == '3'){
+            $valve_status_color1 = 'badge progress-bar-success';
+            $valve_status_color2 = 'badge progress-bar-success';
+            $valve_status_text1 = 'On';
+            $valve_status_text2 = 'On';
+        }  
+        if($valve_status == '4'){
+            $valve_status_color1 = 'badge progress-bar-primary';
+            $valve_status_color2 = 'badge progress-bar-primary';
+            $valve_status_text1 = 'Off';
+            $valve_status_text2 = 'Off';
+        }                                   
+  }
+
+/*---------------------------------------------------------------------------------------------------------------- */
 $this->registerJs(" 
 $(document).ready(function() {
     var today = new Date();
@@ -134,9 +173,25 @@ $(document).ready(function() {
                     </div>
                     <div class="panel panel-red" style="width:100%; height:200px;">
                             <div class="panel-body">
-                                <!---------------------------------------------------------->
-                            
-                                <!---------------------------------------------------------->
+                            <table class="table text-center">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col" class="text-center">Valve name</th>
+                                        <th scope="col" class="text-center">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Valve 1</td>
+                                            <td><span class="<?= $valve_status_color1 ?>"><?= $valve_status_text1 ?></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Valve 2</td>
+                                            <td><span class="<?= $valve_status_color2 ?>"><?= $valve_status_text2 ?></span></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                            </table>
                         </div>
                     </div>
                 </div> 

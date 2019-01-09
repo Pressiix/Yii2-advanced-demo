@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "32cca3a35bea37383cb61a67724310b0",
+    "content-hash": "9b75ccd33a88e839bccd4bdbeda08c2b",
     "packages": [
         {
             "name": "aki/yii2-image-slider",
@@ -1615,6 +1615,48 @@
                 "yii2"
             ],
             "time": "2018-11-05T12:31:44+00:00"
+        },
+        {
+            "name": "segpacto/yii2-httpfull",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/segpacto/yii2-httpfull.git",
+                "reference": "8c1d42a110036ab744bcfd4f5345d821c62d9c2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/segpacto/yii2-httpfull/zipball/8c1d42a110036ab744bcfd4f5345d821c62d9c2d",
+                "reference": "8c1d42a110036ab744bcfd4f5345d821c62d9c2d",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "HttpFull\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Martinez",
+                    "email": "segpacto@yahoo.es"
+                }
+            ],
+            "description": "Extension conversion of 'Httpful' to yii2 extension",
+            "keywords": [
+                " curl",
+                " httpfull",
+                "extension",
+                "yii2"
+            ],
+            "time": "2016-08-22T15:50:01+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
