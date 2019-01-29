@@ -35,7 +35,7 @@ class ExampleController extends Controller
             ]);
         }
         else{
-            throw new HttpException(404,"You not allow to see dis page!!");
+            throw new HttpException(404,"You not allow to see this page!!");
         }
     }
 
@@ -48,7 +48,7 @@ class ExampleController extends Controller
             return $this->render('example_chart', []);
         }
         else{
-            throw new HttpException(404,"You not allow to see dis page!!");
+            throw new HttpException(404,"You not allow to see this page!!");
         }
     }
 }

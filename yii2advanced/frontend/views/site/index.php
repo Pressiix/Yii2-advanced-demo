@@ -10,7 +10,11 @@ FullCalendarAsset::register($this);
 $this->title = 'Frontend';
 
 /*------------------------------------NETPIE VALVE STATUS------------------------------------ */
-$uri = 'https://api.netpie.io/topic/NETPIE2VALVE/relaystat?retain&auth=WcTxK4EMocRJCcF:H0AHhsFat0L0AIBmdmR3IhN6J';
+$App = '/NETPIE2VALVE';
+$Topic = '/relaystat';
+$Key = 'WcTxK4EMocRJCcF';
+$Secret = 'H0AHhsFat0L0AIBmdmR3IhN6J';
+$uri = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
 $response = \HttpFull\Request::get($uri)->send();
 $result = json_decode($response->body, true);
 $valve_status = $result[0]['payload'];
@@ -45,7 +49,6 @@ $valve_status_text2 = '';
             $valve_status_text2 = 'Off';
         }                                   
   }
-
 /*---------------------------------------------------------------------------------------------------------------- */
 $this->registerJs(" 
 $(document).ready(function() {

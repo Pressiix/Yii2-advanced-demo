@@ -21,6 +21,10 @@ class RbacController extends \yii\console\Controller
         $view_chart = $auth->createPermission('view_chart');
         $view_chart->description = 'view_chart';
         $auth->add($view_chart);
+
+        $view_backend = $auth->createPermission('view_backend');
+        $view_backend->description = 'view_backend';
+        $auth->add($view_backend);
     
         $user = $auth->createRole('User');
         $auth->add($user);
@@ -30,9 +34,15 @@ class RbacController extends \yii\console\Controller
         $auth->add($admin);
         $auth->addChild($admin,$view_chart);
         $auth->addChild($admin, $user);
+        $auth->addChild($admin,$view_backend);
+
+        $developer = $auth->createRole('Developer');
+        $auth->add($developer);
+        $auth->addChild($developer, $admin);
     
-        $auth->assign($admin, 1);
-        $auth->assign($user, 2);
+        $auth->assign($developer, 1);
+        $auth->assign($admin, 2);
+        $auth->assign($user, 3);
     
         Console::output('Success! RBAC roles has been added.');
     }
