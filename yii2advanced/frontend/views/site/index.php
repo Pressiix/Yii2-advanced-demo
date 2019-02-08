@@ -1,12 +1,10 @@
 <?php
 use aki\imageslider\ImageSlider;
-//use segpacto\yii2-httpfull;
 use common\assets\FullCalendarAsset;
+use common\assets\DataTableAsset;
 use yii\web\View;
-//use common\assets\FontawesomeAsset;
-/* @var $this yii\web\View */
 FullCalendarAsset::register($this);
-//FontawesomeAsset::register($this);
+DataTableAsset::register($this);
 $this->title = 'Frontend';
 
 /*------------------------------------NETPIE VALVE STATUS------------------------------------ */
@@ -14,8 +12,8 @@ $App = '/NETPIE2VALVE';
 $Topic = '/relaystat';
 $Key = 'WcTxK4EMocRJCcF';
 $Secret = 'H0AHhsFat0L0AIBmdmR3IhN6J';
-$uri = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
-$response = \HttpFull\Request::get($uri)->send();
+$url = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
+$response = \HttpFull\Request::get($url)->send();
 $result = json_decode($response->body, true);
 $valve_status = $result[0]['payload'];
 
@@ -92,11 +90,23 @@ $(document).ready(function() {
                 start: '2018-12-28'
             }
         ],
-        height: 390    //set calendar high
+        height: 420    //set calendar high
     });
 
 });
 
+/**********************************DataTable Configuration*********************************************/
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
+        /*\"paging\": false,
+        \"info\":     false*/
+    } );
+} );
+/******************************************************************************************************/
 ", View::POS_READY, 'my-options');
 ?>
 <div class="site-index">
@@ -174,7 +184,7 @@ $(document).ready(function() {
                             </table>
                         </div>
                     </div>
-                    <div class="panel panel-red" style="width:100%; height:200px;">
+                    <div class="panel panel-red" style="width:100%; height:225px;">
                             <div class="panel-body">
                             <table class="table text-center">
                                     <thead>
@@ -201,8 +211,8 @@ $(document).ready(function() {
                 <div class="col-md-7">  <!--COLUMN2-->
                     <div class="panel panel-red" >
                         <div class="panel-heading text-center"><b>News</b></div>
-                        <div class="panel-body" style="height:420px;">
-                        <table class="table table-hover">
+                        <div class="panel-body" style="height:450px;">
+                        <table id="example" class="table table-hover">
                             <thead>
                                 <tr>
                                 <th scope="col" style="width:50px;"></th>
