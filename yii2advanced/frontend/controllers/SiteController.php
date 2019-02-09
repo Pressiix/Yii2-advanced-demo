@@ -111,18 +111,19 @@ class SiteController extends Controller
                 }                                   
         }
         /*---------------------------------------------------------------------------------------------------------------- */
-        $arr = array(9, 9, 9, 9, 3, 1, 8, 3, 6);
+        $arr = array(9, 3, 1, 8, 3, 6);
         $med = StatHelper::Median($arr);
         $avg = StatHelper::Average($arr);
         $mode = StatHelper::Mode($arr);
-        //echo '<pre/>'; print_r($mode); echo '<pre/>';
         $range = StatHelper::Range($arr);
+        $sd = StatHelper::StandardDeviation($arr);
         return $this->render('index', [
             'valve_info' => $valve_info,
             'med' => $med,
             'avg' => $avg,
             'mode' => $mode,
-            'range' => $range
+            'range' => $range,
+            'sd' => $sd
         ]);
     }
 

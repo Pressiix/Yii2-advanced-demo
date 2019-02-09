@@ -1,4 +1,9 @@
 <?php
+/**
+ * File common helper
+ * 
+ * @author Watcharaphon Piamphuetna <watcharapon.piam@gmail.com>
+ */
 namespace common\helpers;
 
 class StatHelper {
@@ -8,10 +13,7 @@ class StatHelper {
         $count = sizeof($arr);   // cache the count
         $index = floor($count/2);  // cache the index
         
-            if (!$count) {
-                $median = 0;
-            } 
-            else if($count & 1) {    // count is odd
+           if($count & 1) {    // count is odd
                 $median = $arr[$index];
             } 
             else{                   // count is even
@@ -39,15 +41,9 @@ class StatHelper {
                 $freq[$arr[$i]]++;
             }
         }
-        $mode_array = array_keys($freq, max($freq));
+        $mode = implode(",",array_keys($freq, max($freq)));
 
-        if(count($mode_array) > 1){
-            for($j=0; $j< count($mode_array); $j++){
-                $mode = 
-            }
-        }
-
-        return $mode;   //return array 
+        return $mode;   
     }
 
     public function Range($arr){
@@ -55,4 +51,23 @@ class StatHelper {
 
         return $range;
     }
+
+    public function StandardDeviation($arr) 
+    { 
+        $num_of_elements = count($arr); 
+          
+        $variance = 0.0; 
+            // calculating mean using array_sum() method 
+        $average = array_sum($arr)/$num_of_elements; 
+          
+        foreach($arr as $i) 
+        { 
+            // sum of squares of differences between  
+            // all numbers and means. 
+            $variance += pow(($i - $average), 2); 
+        } 
+        $standard_deviation = (float)sqrt($variance/$num_of_elements); 
+
+        return $standard_deviation;
+    } 
 }

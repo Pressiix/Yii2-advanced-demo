@@ -169,6 +169,9 @@ $(document).ready(function() {
                                         <tr>
                                         <td> Range = <?= $range ?> </td> </td>
                                         </tr>
+                                        <tr>
+                                        <td> Standard Deviation = <?= $sd ?> </td> </td>
+                                        </tr>
                                     </tbody>
                             </table>
                         </div>
