@@ -1,6 +1,6 @@
 <?php
 /**
- * File common helper
+ * Common helper
  * 
  * @author Watcharaphon Piamphuetna <watcharapon.piam@gmail.com>
  */
