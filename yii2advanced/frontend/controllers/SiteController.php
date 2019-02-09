@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\helpers\StatHelper;
 
 /**
  * Site controller
@@ -72,7 +73,50 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        /*------------------------------------NETPIE VALVE STATUS------------------------------------ */
+        $App = '/NETPIE2VALVE';
+        $Topic = '/relaystat';
+        $Key = 'WcTxK4EMocRJCcF';
+        $Secret = 'H0AHhsFat0L0AIBmdmR3IhN6J';
+        $url = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
+        $response = \HttpFull\Request::get($url)->send();
+        $result = json_decode($response->body, true);
+        $valve_status = $result[0]['payload'];
+        $valve_info = [];
+        
+        if($valve_status){
+            if($valve_status == '1'){
+                    $valve_info['valve1_status_color'] = 'badge progress-bar-success';
+                    $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
+                    $valve_info['valve1_status'] = 'On';
+                    $valve_info['valve2_status'] = 'Off';
+            } 
+            if($valve_status == '2'){
+                    $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
+                    $valve_info['valve2_status_color'] = 'badge progress-bar-success';
+                    $valve_info['valve1_status'] = 'Off';
+                    $valve_info['valve2_status'] = 'On';
+                }  
+                if($valve_status == '3'){
+                    $valve_info['valve1_status_color'] = 'badge progress-bar-success';
+                    $valve_info['valve2_status_color'] = 'badge progress-bar-success';
+                    $valve_info['valve1_status'] = 'On';
+                    $valve_info['valve2_status'] = 'On';
+                }  
+                if($valve_status == '4'){
+                    $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
+                    $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
+                    $valve_info['valve1_status'] = 'Off';
+                    $valve_info['valve2_status'] = 'Off';
+                }                                   
+        }
+        /*---------------------------------------------------------------------------------------------------------------- */
+        /*$arr = array(1,2,3,4,5,6,7,8,9);
+        $med = StatHelper::getMedian($arr);*/
+        return $this->render('index', [
+            'valve_info' => $valve_info,
+            //'med' => $med
+        ]);
     }
 
     /**

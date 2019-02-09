@@ -1,53 +1,11 @@
 <?php
 use aki\imageslider\ImageSlider;
 use common\assets\FullCalendarAsset;
-use common\assets\DataTableAsset;
+//use common\assets\DataTableAsset;
 use yii\web\View;
 FullCalendarAsset::register($this);
-DataTableAsset::register($this);
+//DataTableAsset::register($this);
 $this->title = 'Frontend';
-
-/*------------------------------------NETPIE VALVE STATUS------------------------------------ */
-$App = '/NETPIE2VALVE';
-$Topic = '/relaystat';
-$Key = 'WcTxK4EMocRJCcF';
-$Secret = 'H0AHhsFat0L0AIBmdmR3IhN6J';
-$url = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
-$response = \HttpFull\Request::get($url)->send();
-$result = json_decode($response->body, true);
-$valve_status = $result[0]['payload'];
-
-$valve_status_color1 = '';
-$valve_status_color2 = '';
-$valve_status_text1 = '';
-$valve_status_text2 = '';
-  if($valve_status){
-       if($valve_status == '1'){
-            $valve_status_color1 = 'badge progress-bar-success';
-            $valve_status_color2 = 'badge progress-bar-primary';
-            $valve_status_text1 = 'On';
-            $valve_status_text2 = 'Off';
-       } 
-       if($valve_status == '2'){
-            $valve_status_color1 = 'badge progress-bar-primary';
-            $valve_status_color2 = 'badge progress-bar-success';
-            $valve_status_text1 = 'Off';
-            $valve_status_text2 = 'On';
-        }  
-        if($valve_status == '3'){
-            $valve_status_color1 = 'badge progress-bar-success';
-            $valve_status_color2 = 'badge progress-bar-success';
-            $valve_status_text1 = 'On';
-            $valve_status_text2 = 'On';
-        }  
-        if($valve_status == '4'){
-            $valve_status_color1 = 'badge progress-bar-primary';
-            $valve_status_color2 = 'badge progress-bar-primary';
-            $valve_status_text1 = 'Off';
-            $valve_status_text2 = 'Off';
-        }                                   
-  }
-/*---------------------------------------------------------------------------------------------------------------- */
 $this->registerJs(" 
 $(document).ready(function() {
     var today = new Date();
@@ -90,57 +48,44 @@ $(document).ready(function() {
                 start: '2018-12-28'
             }
         ],
-        height: 420    //set calendar high
+        height: 370    //set calendar high
     });
 
 });
 
 /**********************************DataTable Configuration*********************************************/
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('#example').DataTable( {
         dom: 'Bfrtip',
         buttons: [
             'csv', 'excel', 'pdf'
         ],
-        /*\"paging\": false,
-        \"info\":     false*/
+        \"paging\": false,
+        \"info\":     false
     } );
-} );
+} );*/
 /******************************************************************************************************/
 ", View::POS_READY, 'my-options');
 ?>
 <div class="site-index">
-
-    <!--<div class="jumbotron">
-        <h1>Hello World!!</h1>
-    </div>-->
     <i class="fa fa-camera-retro fa-5x"></i>
     <div class="body-content">
     <?= ImageSlider::widget([
 	'baseUrl' => Yii::getAlias('@web/image'),
     'nextPerv' => true,
     'indicators' => true,
-    'height' => '320px',
+    'height' => '330px',
     'width' => '100%',
     'classes' => 'img-rounded',
     'images' => [
         [
             'active' => true,
-            'src' => 'b1.jpg',
+            'src' => '1.jpg',
             'title' => 'image',
 
         ],
         [
-            'src' => 'b2.jpg',
-            'title' => 'image',
-    	],
-        [
-            'src' => 'b1.jpg',
-            'title' => 'image',
-
-        ],
-        [
-            'src' => 'b2.jpg',
+            'src' => '2.jpg',
             'title' => 'image',
         ],
         [
@@ -151,13 +96,22 @@ $(document).ready(function() {
         [
             'src' => 'b2.jpg',
             'title' => 'image',
-        ]
+        ]/*,
+        [
+            'src' => '1.jpg',
+            'title' => 'image',
+
+        ],
+        [
+            'src' => '2.jpg',
+            'title' => 'image',
+        ]*/
     ],
     ]); ?>
     <br/>
             <div class="row">   <!----------------------------------ROW1----------------------------------------->
                 <div class="col-md-2"> <!--COLUMN1-->
-                    <div class="panel panel-red" style="width:100%; height:245px;" >
+                    <div class="panel panel-red" style="height:222px;" >
                         <div class="panel-heading text-center"><b>Online users</b></div>
                             <div class="panel-body">
                                 <table class="table text-center">
@@ -184,25 +138,28 @@ $(document).ready(function() {
                             </table>
                         </div>
                     </div>
-                    <div class="panel panel-red" style="width:100%; height:225px;">
+                    <div class="panel panel-red" style="height:200px;">
+                    <div class="panel-heading text-center"><b>Valve status</b></div>
                             <div class="panel-body">
                             <table class="table text-center">
                                     <thead>
                                         <tr>
-                                        <th scope="col" class="text-center">Valve name</th>
+                                        <th scope="col" class="text-center">Valve NO.</th>
                                         <th scope="col" class="text-center">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Valve 1</td>
-                                            <td><span class="<?= $valve_status_color1 ?>"><?= $valve_status_text1 ?></span></td>
+                                            <td>1</td>
+                                            <td><span class="<?= $valve_info['valve1_status_color'] ?>"><?= $valve_info['valve1_status'] ?></span></td>
                                         </tr>
                                         <tr>
-                                            <td>Valve 2</td>
-                                            <td><span class="<?= $valve_status_color2 ?>"><?= $valve_status_text2 ?></span></td>
+                                            <td>2</td>
+                                            <td><span class="<?= $valve_info['valve2_status_color'] ?>"><?= $valve_info['valve2_status'] ?></span></td>
                                         </tr>
-                                        
+                                        <!--<tr>
+                                        <td> ?= $med ? </td> </tdmed>
+                                        </tr>-->
                                     </tbody>
                             </table>
                         </div>
@@ -211,7 +168,7 @@ $(document).ready(function() {
                 <div class="col-md-7">  <!--COLUMN2-->
                     <div class="panel panel-red" >
                         <div class="panel-heading text-center"><b>News</b></div>
-                        <div class="panel-body" style="height:450px;">
+                        <div class="panel-body" style="height:400px;">
                         <table id="example" class="table table-hover">
                             <thead>
                                 <tr>
@@ -223,50 +180,50 @@ $(document).ready(function() {
                             <tbody>
                                 <tr>
                                     <td> <span class="badge progress-bar-info">New</span></td>
-                                    <td> Avengers 4 aaaaaaaaaaaaaaaaaaa</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y") ?></td>
                                 </tr>
                                 <tr>
                                     <td> </td>
-                                    <td> Topic 2</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y") ?></td>
                                 </tr>
                                 <tr>
                                     <td> </td>
-                                    <td> Arghhhhhhh</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y",strtotime("yesterday")) ?></td>
                                 </tr>
                                 <tr>
                                     <td> </td>
-                                    <td> Topic 3</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y",strtotime("-3 day")) ?></td>
                                 </tr>
                                 <tr>
                                     <td> <span class="badge progress-bar-info">New</span></td>
-                                    <td> Avengers 4 aaaaaaaaaaaaaaaaaaa</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y") ?></td>
                                 </tr>
                                 <tr>
                                     <td> </td>
-                                    <td> Topic 4</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y") ?></td>
                                 </tr>
                                 <tr>
                                     <td> <span class="badge progress-bar-info">New</span></td>
-                                    <td> Avengers 4 aaaaaaaaaaaaaaaaaaa</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y",strtotime("-5 day")) ?></td>
                                 </tr>
                                 <tr>
                                     <td> </td>
-                                    <td> Avengers 4 aaaaaaaaaaaaaaaaaaa</td>
-                                    <td class="text-center">11/12/2018</td>
+                                    <td>Demo topic</td>
+                                    <td class="text-center"><?= date("d/m/Y") ?></td>
                                 </tr>
                             </tbody>
                         </table>
                         </div>
                     </div>
                 </div> 
-                <div class="col-md-3">  <!--COLUMN2-->
+                <div class="col-md-3">  <!--COLUMN3-->
                     <div class="panel panel-red" >
                         <div class="panel-heading text-center"><b>Calendar</b></div>
                         <div class="panel-body">

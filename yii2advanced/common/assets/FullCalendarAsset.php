@@ -12,7 +12,7 @@ class FullCalendarAsset extends AssetBundle
     ];
     public $js = [
         'https://fullcalendar.io/js/fullcalendar-3.9.0/lib/moment.min.js',
-        'https://fullcalendar.io/js/fullcalendar-3.9.0/fullcalendar.js'
+        'https://fullcalendar.io/js/fullcalendar-3.9.0/fullcalendar.js',
 
     ];
     public $depends = [
