@@ -163,6 +163,12 @@ $(document).ready(function() {
                                         <tr>
                                         <td> Average = <?= $avg ?> </td> </td>
                                         </tr>
+                                        <tr>
+                                        <td> Mode = <?= $mode ?> </td> </td>
+                                        </tr>
+                                        <tr>
+                                        <td> Range = <?= $range ?> </td> </td>
+                                        </tr>
                                     </tbody>
                             </table>
                         </div>
