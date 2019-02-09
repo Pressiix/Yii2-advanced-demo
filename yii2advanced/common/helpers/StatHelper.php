@@ -3,7 +3,7 @@ namespace common\helpers;
 
 class StatHelper {
 
-    public function getMedian($arr){
+    public function Median($arr){
         sort($arr);
         $count = sizeof($arr);   // cache the count
         $index = floor($count/2);  // cache the index
@@ -17,5 +17,11 @@ class StatHelper {
             }
 
         return $median;
+    }
+
+    public function Average($arr){
+        $average = array_sum($arr) / count($arr);
+
+        return $average;
     }
 }

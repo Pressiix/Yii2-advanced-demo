@@ -111,11 +111,13 @@ class SiteController extends Controller
                 }                                   
         }
         /*---------------------------------------------------------------------------------------------------------------- */
-        /*$arr = array(1,2,3,4,5,6,7,8,9);
-        $med = StatHelper::getMedian($arr);*/
+        $arr = array(1, 3, 3, 6, 8, 9);
+        $med = StatHelper::Median($arr);
+        $avg = StatHelper::Average($arr);
         return $this->render('index', [
             'valve_info' => $valve_info,
-            //'med' => $med
+            'med' => $med,
+            'avg' => $avg
         ]);
     }
 
