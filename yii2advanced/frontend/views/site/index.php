@@ -157,21 +157,6 @@ $(document).ready(function() {
                                             <td>2</td>
                                             <td><span class="<?= $valve_info['valve2_status_color'] ?>"><?= $valve_info['valve2_status'] ?></span></td>
                                         </tr>
-                                        <tr>
-                                        <td> Median = <?= $med ?> </td> </td>
-                                        </tr>
-                                        <tr>
-                                        <td> Average = <?= $avg ?> </td> </td>
-                                        </tr>
-                                        <tr>
-                                        <td> Mode = <?= $mode ?> </td> </td>
-                                        </tr>
-                                        <tr>
-                                        <td> Range = <?= $range ?> </td> </td>
-                                        </tr>
-                                        <tr>
-                                        <td> Standard Deviation = <?= $sd ?> </td> </td>
-                                        </tr>
                                     </tbody>
                             </table>
                         </div>

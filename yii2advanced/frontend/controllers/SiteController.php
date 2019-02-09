@@ -12,7 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-use common\helpers\StatHelper;
+//use common\helpers\StatHelper;
 
 /**
  * Site controller
@@ -78,52 +78,55 @@ class SiteController extends Controller
         $Topic = '/relaystat';
         $Key = 'WcTxK4EMocRJCcF';
         $Secret = 'H0AHhsFat0L0AIBmdmR3IhN6J';
-        $url = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
-        $response = \HttpFull\Request::get($url)->send();
-        $result = json_decode($response->body, true);
-        $valve_status = $result[0]['payload'];
         $valve_info = [];
+        $check_internet_connection = @fsockopen("www.google.com", 80);
         
-        if($valve_status){
-            if($valve_status == '1'){
-                    $valve_info['valve1_status_color'] = 'badge progress-bar-success';
-                    $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
-                    $valve_info['valve1_status'] = 'On';
-                    $valve_info['valve2_status'] = 'Off';
-            } 
-            if($valve_status == '2'){
-                    $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
-                    $valve_info['valve2_status_color'] = 'badge progress-bar-success';
-                    $valve_info['valve1_status'] = 'Off';
-                    $valve_info['valve2_status'] = 'On';
-                }  
-                if($valve_status == '3'){
-                    $valve_info['valve1_status_color'] = 'badge progress-bar-success';
-                    $valve_info['valve2_status_color'] = 'badge progress-bar-success';
-                    $valve_info['valve1_status'] = 'On';
-                    $valve_info['valve2_status'] = 'On';
-                }  
-                if($valve_status == '4'){
-                    $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
-                    $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
-                    $valve_info['valve1_status'] = 'Off';
-                    $valve_info['valve2_status'] = 'Off';
-                }                                   
+        if($check_internet_connection){
+            $url = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
+            $response = \HttpFull\Request::get($url)->send();
+                $result = json_decode($response->body, true);
+                $valve_status = $result[0]['payload'];
+                
+                if($valve_status){
+                    if($valve_status == '1'){
+                            $valve_info['valve1_status_color'] = 'badge progress-bar-success';
+                            $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
+                            $valve_info['valve1_status'] = 'On';
+                            $valve_info['valve2_status'] = 'Off';
+                    } 
+                    if($valve_status == '2'){
+                            $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
+                            $valve_info['valve2_status_color'] = 'badge progress-bar-success';
+                            $valve_info['valve1_status'] = 'Off';
+                            $valve_info['valve2_status'] = 'On';
+                        }  
+                        if($valve_status == '3'){
+                            $valve_info['valve1_status_color'] = 'badge progress-bar-success';
+                            $valve_info['valve2_status_color'] = 'badge progress-bar-success';
+                            $valve_info['valve1_status'] = 'On';
+                            $valve_info['valve2_status'] = 'On';
+                        }  
+                        if($valve_status == '4'){
+                            $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
+                            $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
+                            $valve_info['valve1_status'] = 'Off';
+                            $valve_info['valve2_status'] = 'Off';
+                        }                                   
+                }
+                fclose($check_internet_connection);
         }
+        else{
+            $valve_info['valve1_status_color'] = 'badge progress-bar-danger';
+            $valve_info['valve2_status_color'] = 'badge progress-bar-danger';
+            $valve_info['valve1_status'] = 'Can\'t connect';
+            $valve_info['valve2_status'] = 'Can\'t connect';
+        }
+        
+        
         /*---------------------------------------------------------------------------------------------------------------- */
-        $arr = array(9, 3, 1, 8, 3, 6);
-        $med = StatHelper::Median($arr);
-        $avg = StatHelper::Average($arr);
-        $mode = StatHelper::Mode($arr);
-        $range = StatHelper::Range($arr);
-        $sd = StatHelper::StandardDeviation($arr);
+        
         return $this->render('index', [
-            'valve_info' => $valve_info,
-            'med' => $med,
-            'avg' => $avg,
-            'mode' => $mode,
-            'range' => $range,
-            'sd' => $sd
+            'valve_info' => $valve_info
         ]);
     }
 
