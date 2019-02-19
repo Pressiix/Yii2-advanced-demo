@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl; 
 use frontend\models\ExampleForm;
+use frontend\models\ExampleReportForm;
 use \yii\web\HttpException;
 
 class ExampleController extends Controller
@@ -50,5 +51,19 @@ class ExampleController extends Controller
         else{
             throw new HttpException(404,"You not allow to see this page!!");
         }
+    }
+
+    public function actionExampleReport()
+    {
+        $model = new ExampleReportForm();
+        /*if (\Yii::$app->user->can('view_chart')) {     //Check user permission
+            return $this->render('example_chart', []);
+        }
+        else{
+            throw new HttpException(404,"You not allow to see this page!!");
+        }*/
+        return $this->render('example_report', [
+            'model' => $model
+        ]);
     }
 }

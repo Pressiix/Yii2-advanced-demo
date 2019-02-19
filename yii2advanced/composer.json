@@ -21,7 +21,9 @@
         "kartik-v/yii2-widgets": "*",
         "aki/yii2-image-slider": "*",
         "bower-asset/fontawesome": "*",
-        "segpacto/yii2-httpfull": "*"
+        "segpacto/yii2-httpfull": "*",
+        "linslin/yii2-curl": "*",
+        "kartik-v/yii2-widget-datepicker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -55,6 +55,7 @@ AppAsset::register($this);
                 'items' => [
                      ['label' => 'Input Form', 'url' => ['/example/example-form']],
                      ['label' => 'Chart.js', 'url' => ['/example/example-chart']],
+                     ['label' => 'Report', 'url' => ['/example/example-report']],
                      ['label' => 'DataTable', 'url' => '#'],
                 ],
             ],

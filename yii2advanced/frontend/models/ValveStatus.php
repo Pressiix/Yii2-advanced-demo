@@ -20,9 +20,9 @@ class ValveStatus extends Model
         $Key = 'WcTxK4EMocRJCcF';
         $Secret = 'H0AHhsFat0L0AIBmdmR3IhN6J';
         $valve_info = [];
-        $check_internet_connection = @fsockopen("www.google.com", 80);
+        $is_connect = @fsockopen("www.google.com", 80);
         
-        if($check_internet_connection){
+        if($is_connect){
             $url = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
             $response = \HttpFull\Request::get($url)->send();
                 $result = json_decode($response->body, true);
@@ -54,7 +54,7 @@ class ValveStatus extends Model
                             $valve_info['valve2_status'] = 'Off';
                         }                                   
                 }
-                fclose($check_internet_connection);
+                fclose($is_connect);
         }
         else{
             $valve_info['valve1_status_color'] = 'badge progress-bar-danger';
