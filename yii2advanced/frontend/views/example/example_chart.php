@@ -134,7 +134,7 @@ var chart = new Chart(ctx, {
                 </div> 
                 <div class="col-md-6">  <!--COLUMN2-->
                     <div class="panel panel-red" >
-                        <div class="panel-heading">Doughnut Chart</div>
+                        <div class="panel-heading">Doughnnut Chart</div>
                         <div class="panel-body">
                             <canvas id="myChart4"></canvas>
                         </div>
