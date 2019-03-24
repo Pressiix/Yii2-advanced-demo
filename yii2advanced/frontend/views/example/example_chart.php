@@ -101,7 +101,6 @@ var chart = new Chart(ctx, {
 ", View::POS_READY, 'my-options');
 
 ?>
-
     <div class="panel panel-red ">
         <div class="panel-heading text-center" style="margin-bottom : 20px;"><h1><b>Example Chart.js</b></h1></div>
         <div class="panel-body">  
