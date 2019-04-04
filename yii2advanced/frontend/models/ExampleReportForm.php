@@ -9,7 +9,7 @@ use common\models\User;
  */
 class ExampleReportForm extends Model
 {
-    public $name;
+    public $product_id;
     public $date;
 
 
@@ -19,7 +19,7 @@ class ExampleReportForm extends Model
     public function rules()
     {
         return [
-            [['name','date'], 'required']
+            [['product_id','date'], 'required']
         ];
     }
 
