@@ -3,7 +3,7 @@ namespace common\assets;
 
 use yii\web\AssetBundle;
 
-class ChartJsAsset extends AssetBundle
+class ChartJsDataLabelAsset extends AssetBundle
 {
     //public $basePath = '@webroot';
     //public $baseUrl = '@web';
@@ -11,7 +11,7 @@ class ChartJsAsset extends AssetBundle
         'css/style.css',
     ];*/
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'
+        'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.1.0'
     ];
     public $depends = [
         'yii\web\YiiAsset',

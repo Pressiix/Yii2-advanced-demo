@@ -60,7 +60,7 @@ $(document).ready(function() {
         buttons: [
             'csv', 'excel', 'pdf'
         ],
-        \"paging\": false,
+        \"paging\": true,
         \"info\":     false
     } );
 } );*/

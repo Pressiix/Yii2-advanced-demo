@@ -57,16 +57,19 @@ class ExampleController extends Controller
     public function actionExampleReport()
     {
         $product_id = "";
+        $product_name = "";
+        $date = "";
         $product_menu_list = [];
         $product_info = [];
         $sold_data = [];
-        $sold_item_index = 0;
+        $product_sold_info = [];
+        $product_sold_summary = [];
         $model = new ExampleReportForm();
 
         if ($model->load(Yii::$app->request->post())) 
         {
-            $product_id = Yii::$app->request->post('ExampleReportForm')['product_id'];//$_POST['ExampleReportForm']['product_id'];
-
+            $product_id = Yii::$app->request->post('ExampleReportForm')['product'];//Get product ID from user
+            $date = Yii::$app->request->post('ExampleReportForm')['date'];      //Get date from user
             $product_info = Yii::$app->getDb('db')->createCommand('
                 SELECT * 
                 FROM PRODUCT P JOIN ORDER_DETAIL O ON P.PRODUCT_ID = O.PRODUCT_ID_INDEX
@@ -77,12 +80,27 @@ class ExampleController extends Controller
             $unique_sold_item_id = array_unique(ArrayHelper::getColumn($product_info, 'product_id'));   //get the list of sold item id by unique values
             $count_sold_item = array_count_values(ArrayHelper::getColumn($product_info, 'product_id')); //count sold item foreach product id [PIE CHART]
             $unique_sold_item_name =array_unique(ArrayHelper::getColumn($product_info, 'product_name')); //get the list of sold item name by unique values
-            foreach ($unique_sold_item_id as $key => $value){           //Generate sold data for display
+            foreach ($unique_sold_item_id as $key => $value)                                        //Generate sold data for Pie chart
+            {    if(!isset($sold_item_index))
+                {
+                    $sold_item_index = 0;
+                }       
                 $sold_data[$sold_item_index]['product_id'] = $unique_sold_item_id[$key];
                 $sold_data[$sold_item_index]['product_name'] = (string)$unique_sold_item_name[$key];
                 $sold_data[$sold_item_index]['amount'] = $count_sold_item[$unique_sold_item_id[$key]];
                 $sold_item_index++;
-            }   
+            } 
+            
+            foreach(ArrayHelper::getColumn($product_info, 'product_name') as $index => $value )   //Generate sold data for Data table
+            {
+                if($product_info[$index]['product_id'] == $product_id)
+                {
+                    $product_sold_info[$index]['product_name'] = $product_info[$index]['product_name'];
+                    $product_sold_info[$index]['shop_name'] = $product_info[$index]['order_desc'];
+                }
+            }
+            $product_sold_summary = array_count_values(ArrayHelper::getColumn($product_sold_info, 'shop_name'));
+            $product_name = implode("",array_unique(ArrayHelper::getColumn($product_sold_info, 'product_name')));
         }
         else
         {
@@ -93,13 +111,15 @@ class ExampleController extends Controller
 
             $product_menu_list = ArrayHelper::map($product_info, 'product_id', 'product_name');
         }
-       
+    
         return $this->render('example_report', [
             'model' => $model,
             'product_id' => $product_id,
+            'product_name' => $product_name,
             'product_menu_list' => $product_menu_list,
             'sold_data' => $sold_data,
-            'product_info' => $product_info
+            'product_info' => $product_info,
+            'product_sold_summary' => $product_sold_summary
         ]);
     }
 }
