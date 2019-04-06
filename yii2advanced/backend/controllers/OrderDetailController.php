@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\ProductType;
-use backend\models\ProductTypeSearch;
+use backend\models\OrderDetail;
+use backend\models\OrderDetailSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProductTypeController implements the CRUD actions for ProductType model.
+ * OrderDetailController implements the CRUD actions for OrderDetail model.
  */
-class ProductTypeController extends Controller
+class OrderDetailController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Lists all ProductType models.
+     * Lists all OrderDetail models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductTypeSearch();
+        $searchModel = new OrderDetailSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,29 +45,30 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Displays a single ProductType model.
-     * @param integer $id
+     * Displays a single OrderDetail model.
+     * @param integer $order_id_index
+     * @param integer $product_id_index
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($order_id_index, $product_id_index)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($order_id_index, $product_id_index),
         ]);
     }
 
     /**
-     * Creates a new ProductType model.
+     * Creates a new OrderDetail model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ProductType();
+        $model = new OrderDetail();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->type_id]);
+            return $this->redirect(['view', 'order_id_index' => $model->order_id_index, 'product_id_index' => $model->product_id_index]);
         }
 
         return $this->render('create', [
@@ -76,18 +77,19 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Updates an existing ProductType model.
+     * Updates an existing OrderDetail model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param integer $order_id_index
+     * @param integer $product_id_index
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($order_id_index, $product_id_index)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($order_id_index, $product_id_index);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->type_id]);
+            return $this->redirect(['view', 'order_id_index' => $model->order_id_index, 'product_id_index' => $model->product_id_index]);
         }
 
         return $this->render('update', [
@@ -96,29 +98,31 @@ class ProductTypeController extends Controller
     }
 
     /**
-     * Deletes an existing ProductType model.
+     * Deletes an existing OrderDetail model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param integer $order_id_index
+     * @param integer $product_id_index
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($order_id_index, $product_id_index)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($order_id_index, $product_id_index)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the ProductType model based on its primary key value.
+     * Finds the OrderDetail model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return ProductType the loaded model
+     * @param integer $order_id_index
+     * @param integer $product_id_index
+     * @return OrderDetail the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($order_id_index, $product_id_index)
     {
-        if (($model = ProductType::findOne($id)) !== null) {
+        if (($model = OrderDetail::findOne(['order_id_index' => $order_id_index, 'product_id_index' => $product_id_index])) !== null) {
             return $model;
         }
 

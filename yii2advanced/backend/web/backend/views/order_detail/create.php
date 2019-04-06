@@ -2,15 +2,14 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
-/* @var $model backend\models\ProductType */
+/* @var $model backend\models\OrderDetail */
 
-$this->title = 'Create Product Type';
-$this->params['breadcrumbs'][] = ['label' => 'Product Types', 'url' => ['index']];
+$this->title = 'Create Order Detail';
+$this->params['breadcrumbs'][] = ['label' => 'Order Details', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-type-create">
+<div class="order-detail-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

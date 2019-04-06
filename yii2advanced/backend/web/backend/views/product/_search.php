@@ -19,17 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'product_name') ?>
 
-    <?= $form->field($model, 'product_exdate') ?>
-
-    <?= $form->field($model, 'quantity') ?>
+    <?= $form->field($model, 'Quantity') ?>
 
     <?= $form->field($model, 'price') ?>
 
-    <?php // echo $form->field($model, 'type_id') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

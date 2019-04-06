@@ -96,7 +96,7 @@ class ExampleController extends Controller
                 if($product_info[$index]['product_id'] == $product_id)
                 {
                     $product_sold_info[$index]['product_name'] = $product_info[$index]['product_name'];
-                    $product_sold_info[$index]['shop_name'] = $product_info[$index]['order_desc'];
+                    $product_sold_info[$index]['shop_name'] = $product_info[$index]['shop_name'];
                 }
             }
             $product_sold_summary = array_count_values(ArrayHelper::getColumn($product_sold_info, 'shop_name'));

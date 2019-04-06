@@ -2,15 +2,14 @@
 
 namespace backend\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\ProductType;
+use backend\models\OrderDetail;
 
 /**
- * ProductTypeSearch represents the model behind the search form of `backend\models\ProductType`.
+ * OrderDetailSearch represents the model behind the search form of `backend\models\OrderDetail`.
  */
-class ProductTypeSearch extends ProductType
+class OrderDetailSearch extends OrderDetail
 {
     /**
      * {@inheritdoc}
@@ -18,8 +17,7 @@ class ProductTypeSearch extends ProductType
     public function rules()
     {
         return [
-            [['type_id'], 'integer'],
-            [['type_name'], 'safe'],
+            [['order_id_index', 'product_id_index'], 'integer'],
         ];
     }
 
@@ -41,7 +39,7 @@ class ProductTypeSearch extends ProductType
      */
     public function search($params)
     {
-        $query = ProductType::find();
+        $query = OrderDetail::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +57,9 @@ class ProductTypeSearch extends ProductType
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'type_id' => $this->type_id,
+            'order_id_index' => $this->order_id_index,
+            'product_id_index' => $this->product_id_index,
         ]);
-
-        $query->andFilterWhere(['like', 'type_name', $this->type_name]);
 
         return $dataProvider;
     }

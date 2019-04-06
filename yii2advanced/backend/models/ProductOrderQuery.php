@@ -3,11 +3,11 @@
 namespace backend\models;
 
 /**
- * This is the ActiveQuery class for [[ProductType]].
+ * This is the ActiveQuery class for [[ProductOrder]].
  *
- * @see ProductType
+ * @see ProductOrder
  */
-class ProductTypeQuery extends \yii\db\ActiveQuery
+class ProductOrderQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class ProductTypeQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return ProductType[]|array
+     * @return ProductOrder[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class ProductTypeQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return ProductType|array|null
+     * @return ProductOrder|array|null
      */
     public function one($db = null)
     {

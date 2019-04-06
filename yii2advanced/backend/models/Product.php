@@ -5,16 +5,15 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "product".
+ * This is the model class for table "{{%product}}".
  *
  * @property int $product_id
  * @property string $product_name
- * @property string $product_exdate
- * @property int $quantity
+ * @property int $Quantity
  * @property string $price
- * @property int $type_id
  *
- * @property ProductType $type
+ * @property OrderDetail[] $orderDetails
+ * @property ProductOrder[] $orderIdIndices
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -23,7 +22,7 @@ class Product extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'product';
+        return '{{%product}}';
     }
 
     /**
@@ -32,13 +31,10 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'type_id'], 'required'],
-            [['product_id', 'quantity', 'type_id'], 'integer'],
-            [['product_exdate'], 'safe'],
+            [['product_name', 'Quantity', 'price'], 'required'],
+            [['Quantity'], 'integer'],
             [['price'], 'number'],
-            [['product_name'], 'string', 'max' => 45],
-            [['product_id'], 'unique'],
-            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductType::className(), 'targetAttribute' => ['type_id' => 'type_id']],
+            [['product_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,21 +44,27 @@ class Product extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'product_id' => Yii::t('app', 'Product ID'),
-            'product_name' => Yii::t('app', 'Product Name'),
-            'product_exdate' => Yii::t('app', 'Product Exdate'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'price' => Yii::t('app', 'Price'),
-            'type_id' => Yii::t('app', 'Type ID'),
+            'product_id' => 'Product ID',
+            'product_name' => 'Product Name',
+            'Quantity' => 'Quantity',
+            'price' => 'Price',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getType()
+    public function getOrderDetails()
     {
-        return $this->hasOne(ProductType::className(), ['type_id' => 'type_id']);
+        return $this->hasMany(OrderDetail::className(), ['product_id_index' => 'product_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderIdIndices()
+    {
+        return $this->hasMany(ProductOrder::className(), ['order_id' => 'order_id_index'])->viaTable('{{%order_detail}}', ['product_id_index' => 'product_id']);
     }
 
     /**

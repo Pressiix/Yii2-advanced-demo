@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Product;
+use backend\models\ProductOrder;
 
 /**
- * ProductSearch represents the model behind the search form of `backend\models\Product`.
+ * ProductOrderSearch represents the model behind the search form of `backend\models\ProductOrder`.
  */
-class ProductSearch extends Product
+class ProductOrderSearch extends ProductOrder
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['product_id', 'Quantity'], 'integer'],
-            [['product_name'], 'safe'],
-            [['price'], 'number'],
+            [['order_id'], 'integer'],
+            [['shop_name'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find();
+        $query = ProductOrder::find();
 
         // add conditions that should always apply here
 
@@ -59,12 +58,10 @@ class ProductSearch extends Product
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'product_id' => $this->product_id,
-            'Quantity' => $this->Quantity,
-            'price' => $this->price,
+            'order_id' => $this->order_id,
         ]);
 
-        $query->andFilterWhere(['like', 'product_name', $this->product_name]);
+        $query->andFilterWhere(['like', 'shop_name', $this->shop_name]);
 
         return $dataProvider;
     }
