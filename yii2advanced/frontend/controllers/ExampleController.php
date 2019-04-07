@@ -73,7 +73,6 @@ class ExampleController extends Controller
             $product_info = Yii::$app->getDb('db')->createCommand('
                 SELECT * 
                 FROM PRODUCT P JOIN ORDER_DETAIL O ON P.PRODUCT_ID = O.PRODUCT_ID_INDEX
-                JOIN PRODUCT_ORDER PO ON O.ORDER_ID_INDEX = PO.ORDER_ID
             ')->queryAll();
 
             $product_menu_list = ArrayHelper::map($product_info, 'product_id', 'product_name');

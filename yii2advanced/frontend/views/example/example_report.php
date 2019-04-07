@@ -1,8 +1,4 @@
 <?php
-//use kartik\depdrop\DepDrop;
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use common\assets\ChartJsAsset;
 use common\assets\ChartJsDataLabelAsset;
@@ -108,29 +104,10 @@ $(document).ready(function() {
 
 ?>
 
-<?php $form = ActiveForm::begin(); ?>
-<?= 
-	$form->field($model, 'product')->dropDownList($product_menu_list, [
-		'prompt'=>'select product'
-	]);     //Menu dropdown list
-?>
-<?=  $form->field($model, 'date')->widget(DatePicker::classname(),[
-	'name' => 'datetime',
-	'options' => ['placeholder' => 'select date','autocomplete' => 'off'],
-	'pluginOptions' => [
-		'format' => 'dd-M-yyyy',
-		'todayHighlight' => true,
-		'autoclose' => true,
-	]
-]);
-?>
-<div class="form-group">
-<br/>
-        <div>
-            <?= Html::submitButton('Generate report', ['class' => 'btn btn-primary']) ?>
-        </div>
-    </div>
-<?php ActiveForm::end(); ?>
+<?= $this->render('form/_report_form',[
+		'model' => $model,
+		'product_menu_list' => $product_menu_list
+]) ?>
 
 <?php 
 	if($sold_data)			//*************************** *START BODY* *****************************
@@ -138,7 +115,7 @@ $(document).ready(function() {
 ?>
 		<div class="col-md-5">
 			<div class="panel panel-red text-center">
-				<div class="panel-heading"><h4>Sold Item Chart</h4></div>
+				<div class="panel-heading"><h4><b>Sold Item Chart</b></h4></div>
 				<div class="panel-body" >
 						<canvas id="myChart4" style="height:250px; width:400px;"></canvas>
 				</div>
@@ -146,7 +123,7 @@ $(document).ready(function() {
 		</div>
 		<div class="col-md-7">
 			<div class="panel panel-red">
-				<div class="panel-heading text-center"><h4>Sales information (<?= $product_name; ?>) </h4></div>
+				<div class="panel-heading text-center"><h4><b>Sales information (<?= $product_name; ?>) </b></h4></div>
 				<div class=panel-body" style="height:358px;">
 					<div class="container-fluid table-responsive table-responsive-md">
 						<br/>

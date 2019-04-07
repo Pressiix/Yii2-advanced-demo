@@ -294,7 +294,7 @@ new Chart(ctx, {
                     <div class="panel panel-pink" >
                         <div class="panel-heading text-center"><h4><b>Pie Chart</b></h4></div>
                         <div class="panel-body">
-                            <canvas id="myChart3" style="height:278px;"></canvas>
+                            <canvas id="myChart3" style="height:210px;"></canvas>
                         </div>
                     </div>
                 </div> 
@@ -304,7 +304,7 @@ new Chart(ctx, {
                     <div class="panel panel-pink" >
                         <div class="panel-heading text-center"><h4><b>Doughnut Chart</b></h4></div>
                         <div class="panel-body">
-                            <canvas id="myChart4" style="height:278px;"></canvas>
+                            <canvas id="myChart4" style="height:208px;"></canvas>
                         </div>
                     </div>
                 </div> 
@@ -312,7 +312,7 @@ new Chart(ctx, {
                     <div class="panel panel-pink" >
                         <div class="panel-heading text-center"><h4><b>Horizontal Bar Chart</b></h4></div>
                         <div class="panel-body">
-                            <canvas id="myChart5" style="width=100px; height:245px;"></canvas>
+                            <canvas id="myChart5" style="width=100px; height:249px;"></canvas>
                         </div>
                     </div>
                 </div> 
@@ -320,7 +320,7 @@ new Chart(ctx, {
                     <div class="panel panel-pink" >
                         <div class="panel-heading text-center"><h4><b>Stack Bar Chart</b></h4></div>
                         <div class="panel-body">
-                            <canvas id="myChart6" style="width=100px; height:245px;"></canvas>
+                            <canvas id="myChart6" style="width=100px; height:249px;"></canvas>
                         </div>
                     </div>
                 </div> 

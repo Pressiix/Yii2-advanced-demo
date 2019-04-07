@@ -7,11 +7,11 @@ use Yii;
 /**
  * This is the model class for table "{{%order_detail}}".
  *
- * @property int $order_id_index
+ * @property int $order_id
  * @property int $product_id_index
+ * @property string $shop_name
  *
  * @property Product $productIdIndex
- * @property ProductOrder $orderIdIndex
  */
 class OrderDetail extends \yii\db\ActiveRecord
 {
@@ -29,11 +29,11 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id_index', 'product_id_index'], 'required'],
-            [['order_id_index', 'product_id_index'], 'integer'],
-            [['order_id_index', 'product_id_index'], 'unique', 'targetAttribute' => ['order_id_index', 'product_id_index']],
+            [['order_id', 'product_id_index', 'shop_name'], 'required'],
+            [['order_id', 'product_id_index'], 'integer'],
+            [['shop_name'], 'string', 'max' => 255],
+            [['order_id', 'product_id_index'], 'unique', 'targetAttribute' => ['order_id', 'product_id_index']],
             [['product_id_index'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id_index' => 'product_id']],
-            [['order_id_index'], 'exist', 'skipOnError' => true, 'targetClass' => ProductOrder::className(), 'targetAttribute' => ['order_id_index' => 'order_id']],
         ];
     }
 
@@ -43,8 +43,9 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'order_id_index' => 'Order Id Index',
+            'order_id' => 'Order ID',
             'product_id_index' => 'Product Id Index',
+            'shop_name' => 'Shop Name',
         ];
     }
 
@@ -54,14 +55,6 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function getProductIdIndex()
     {
         return $this->hasOne(Product::className(), ['product_id' => 'product_id_index']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderIdIndex()
-    {
-        return $this->hasOne(ProductOrder::className(), ['order_id' => 'order_id_index']);
     }
 
     /**

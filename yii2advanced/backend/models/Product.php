@@ -13,7 +13,6 @@ use Yii;
  * @property string $price
  *
  * @property OrderDetail[] $orderDetails
- * @property ProductOrder[] $orderIdIndices
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -57,14 +56,6 @@ class Product extends \yii\db\ActiveRecord
     public function getOrderDetails()
     {
         return $this->hasMany(OrderDetail::className(), ['product_id_index' => 'product_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderIdIndices()
-    {
-        return $this->hasMany(ProductOrder::className(), ['order_id' => 'order_id_index'])->viaTable('{{%order_detail}}', ['product_id_index' => 'product_id']);
     }
 
     /**

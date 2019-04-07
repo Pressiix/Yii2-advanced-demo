@@ -104,14 +104,14 @@ AppAsset::register($this);
         $menuItems = [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Gii', 'url' => ['/gii'],'linkOptions' => ['target'=>'_blank']],
-            /*[
+            [
                 'label' => 'Master Data',
                 'items' => [
-                     ['label' => 'Product data', 'url' => ['/product/index']],
-                     ['label' => 'Product types', 'url' => ['/product-type/index']],
+                     ['label' => 'Users', 'url' => ['/user/index']],
+                     ['label' => 'Order', 'url' => ['/order-detail/index']],
+                     ['label' => 'Product', 'url' => ['/product/index']],
                 ],
-            ],*/
-            ['label' => 'Users', 'url' => ['/user/index']],
+            ],
         ];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

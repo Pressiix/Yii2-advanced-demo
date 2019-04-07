@@ -46,15 +46,15 @@ class OrderDetailController extends Controller
 
     /**
      * Displays a single OrderDetail model.
-     * @param integer $order_id_index
+     * @param integer $order_id
      * @param integer $product_id_index
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($order_id_index, $product_id_index)
+    public function actionView($order_id, $product_id_index)
     {
         return $this->render('view', [
-            'model' => $this->findModel($order_id_index, $product_id_index),
+            'model' => $this->findModel($order_id, $product_id_index),
         ]);
     }
 
@@ -68,7 +68,7 @@ class OrderDetailController extends Controller
         $model = new OrderDetail();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'order_id_index' => $model->order_id_index, 'product_id_index' => $model->product_id_index]);
+            return $this->redirect(['view', 'order_id' => $model->order_id, 'product_id_index' => $model->product_id_index]);
         }
 
         return $this->render('create', [
@@ -79,17 +79,17 @@ class OrderDetailController extends Controller
     /**
      * Updates an existing OrderDetail model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $order_id_index
+     * @param integer $order_id
      * @param integer $product_id_index
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($order_id_index, $product_id_index)
+    public function actionUpdate($order_id, $product_id_index)
     {
-        $model = $this->findModel($order_id_index, $product_id_index);
+        $model = $this->findModel($order_id, $product_id_index);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'order_id_index' => $model->order_id_index, 'product_id_index' => $model->product_id_index]);
+            return $this->redirect(['view', 'order_id' => $model->order_id, 'product_id_index' => $model->product_id_index]);
         }
 
         return $this->render('update', [
@@ -100,14 +100,14 @@ class OrderDetailController extends Controller
     /**
      * Deletes an existing OrderDetail model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $order_id_index
+     * @param integer $order_id
      * @param integer $product_id_index
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($order_id_index, $product_id_index)
+    public function actionDelete($order_id, $product_id_index)
     {
-        $this->findModel($order_id_index, $product_id_index)->delete();
+        $this->findModel($order_id, $product_id_index)->delete();
 
         return $this->redirect(['index']);
     }
@@ -115,14 +115,14 @@ class OrderDetailController extends Controller
     /**
      * Finds the OrderDetail model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $order_id_index
+     * @param integer $order_id
      * @param integer $product_id_index
      * @return OrderDetail the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($order_id_index, $product_id_index)
+    protected function findModel($order_id, $product_id_index)
     {
-        if (($model = OrderDetail::findOne(['order_id_index' => $order_id_index, 'product_id_index' => $product_id_index])) !== null) {
+        if (($model = OrderDetail::findOne(['order_id' => $order_id, 'product_id_index' => $product_id_index])) !== null) {
             return $model;
         }
 

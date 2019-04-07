@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\OrderDetailSearch */
@@ -12,10 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-detail-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode("Order Transactions") ?></h1>
 
     <p>
-        <?= Html::a('Create Order Detail', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php //= Html::a('Create Order Detail', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,10 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'order_id_index',
+            'order_id',
             'product_id_index',
+            'shop_name',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => ActionColumn::className(),'template' => '{view}{update}{delete}',],
         ],
     ]); ?>
 

@@ -17,7 +17,8 @@ class OrderDetailSearch extends OrderDetail
     public function rules()
     {
         return [
-            [['order_id_index', 'product_id_index'], 'integer'],
+            [['order_id', 'product_id_index'], 'integer'],
+            [['shop_name'], 'safe'],
         ];
     }
 
@@ -57,9 +58,11 @@ class OrderDetailSearch extends OrderDetail
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'order_id_index' => $this->order_id_index,
+            'order_id' => $this->order_id,
             'product_id_index' => $this->product_id_index,
         ]);
+
+        $query->andFilterWhere(['like', 'shop_name', $this->shop_name]);
 
         return $dataProvider;
     }

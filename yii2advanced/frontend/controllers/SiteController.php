@@ -76,6 +76,7 @@ class SiteController extends Controller
     {
         $model = new ValveStatus();
         $valve_info = $model->getValveStatus();
+        
 
         return $this->render('index', [
             'valve_info' => $valve_info
