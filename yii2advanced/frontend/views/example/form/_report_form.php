@@ -3,6 +3,7 @@ use yii\bootstrap\ActiveForm;
 use kartik\date\DatePicker;
 use yii\helpers\Html;
 
+
 $form = ActiveForm::begin(); 
 echo "
     <div class=\"container-fluid\">
@@ -24,6 +25,7 @@ echo "
 	]
 ]);
 ?>
+
 <div class="form-group">
 <br/>
         <div>

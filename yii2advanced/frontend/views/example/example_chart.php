@@ -2,7 +2,7 @@
 use common\assets\ChartJsAsset;
 use yii\web\View;
 use yii\helpers\Html;
-
+use common\components\widgets\PieChartWidget;
 $this->title = 'Example Chart.js';
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -49,30 +49,6 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {}
-});
-
-//Pie Chart
-var ctx = document.getElementById('myChart3').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'pie',
-
-    // The data for our dataset
-    data: {
-        labels: [\"January\", \"February\", \"March\"],
-        datasets: [{
-            label: \"My First dataset\",
-            backgroundColor: ['#f6546a','#40e0d0','#ffc125'],
-            borderColor: ['#f6546a','#40e0d0','#ffc125'],
-            data: [ 5, 20, 30],
-        }]
-    },
-
-    // Configuration options go here
-    options: {
-        responsive: true,
-        //maintainAspectRatio: false,
-    }
 });
 
 //Doughnut Chart
@@ -127,7 +103,16 @@ var chart = new Chart(ctx, {
                     <div class="panel panel-red" >
                         <div class="panel-heading">Pie Chart</div>
                         <div class="panel-body">
-                            <canvas id="myChart3"></canvas>
+                            <?= PieChartWidget::widget([
+                                'id' => 'myChart3',
+                                'labels' => ['A','B','C'],
+                                'data' => [1,2,3],
+                                'backgroundColor' => ['#f6546a','#40e0d0','#ffc125'],
+                                'borderColor' => ['#f6546a','#40e0d0','#ffc125'],
+                                'height' => '320px',
+                                'width' => '320px',
+                                'legend' => 'true'
+                            ]) ?>
                         </div>
                     </div>
                 </div> 
@@ -142,3 +127,4 @@ var chart = new Chart(ctx, {
             </div>   <!------------------------------------------------------------------------------->
         </div>
     </div>      
+    

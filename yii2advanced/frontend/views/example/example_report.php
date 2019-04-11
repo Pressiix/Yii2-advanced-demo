@@ -10,24 +10,17 @@ $this->params['breadcrumbs'][] = $this->title;
 DataTableAsset::register($this);
 ChartJsAsset::register($this);
 ChartJsDataLabelAsset::register($this);
-$PieChart_Labels = "";
-$PieChart_Values = "";
-if($sold_data)
-{
-	$PieChart_Labels = "'".implode("','",ArrayHelper::getColumn($sold_data, 'product_name'))."'";
-	$PieChart_Values = implode(",",ArrayHelper::getColumn($sold_data, 'amount'));
-}
 
 
 $this->registerJs(" 
 var chart = new Chart('myChart4', {
   type: 'bar',
   data: {
-    labels: [".$PieChart_Labels."],
+    labels: ["."'".implode("','",ArrayHelper::getColumn($sold_data, 'product_name'))."'"."],
     datasets: [{
       backgroundColor: ['rgba(255, 99, 132, 0.4)','rgba(54, 162, 235, 0.4)','rgba(75, 192, 192, 0.4)'],
 	  borderColor: ['rgba(255, 99, 132, 0.8)','rgba(54, 162, 235, 0.8)','rgba(75, 192, 192, 0.8)'],
-      data: [".$PieChart_Values."]
+      data: [".implode(",",ArrayHelper::getColumn($sold_data, 'amount'))."]
     }]
   },
   options: {
@@ -140,8 +133,8 @@ $(document).ready(function() {
 										{
 											echo "
 												<tr>
-													<td>$index</td>
-													<td>$product_sold_summary[$index]</td>
+													<td>".$index."</td>
+													<td>".$product_sold_summary[$index]."</td>
 												</tr>
 											";
 										}
