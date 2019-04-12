@@ -20,7 +20,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode(/*$this->title*/'ํYii2-Demo') ?></title>
+    <title><?= Html::encode(/*$this->title*/'ํDemo') ?></title>
     <?php $this->head() ?>
 </head>
 <body>
