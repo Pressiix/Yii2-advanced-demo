@@ -3,6 +3,16 @@ body {
     height: 100%;
 }
 
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #ffffff;
+  }
+  
+  .icon-bar {
+    background-color: #888;
+  }
+  
+
 .wrap {
     min-height: 100%;
     height: auto;

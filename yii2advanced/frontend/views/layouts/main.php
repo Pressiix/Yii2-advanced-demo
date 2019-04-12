@@ -2,6 +2,7 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+use yii\web\View;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -10,6 +11,16 @@ use frontend\assets\AppAsset;
 //use common\assets\FontawesomeAsset;
 use common\widgets\Alert;
 AppAsset::register($this);
+$this->registerCss("
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #ffffff;
+  }
+  
+  .icon-bar {
+    background-color: white;
+  }
+");
 //FontawesomeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -78,7 +89,7 @@ AppAsset::register($this);
 
     ?>
 
-    <div class="container-fluid" style="padding-top: 70px; width:99%;">
+    <div class="container-fluid" style="padding-top: 70px; width:100%;">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
