@@ -16,13 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">  
             <div class="row">   <!----------------------------------ROW1----------------------------------------->
 
-    <?php $form = ActiveForm::begin(['id' => 'form']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'form-name', 'options' => ['autocomplete' => 'off'],]); ?>
                 <div class="col-md-6"> <!--COLUMN1-->
                     <div class="panel panel-red" >
                         <div class="panel-heading"> <h5><b>Input fields</b></h5></div>
                         <div class="panel-body">
                             
-                                <?= $form->field($model, 'text')->textInput(['autofocus' => true])->label('Text') ?>
+                                <?= $form->field($model, 'text',)->textInput(['autofocus' => true])->label('Text') ?>
                                 <?= $form->field($model, 'text')->textarea()->label('Text area'); ?>
                                 <?= $form->field($model, 'text')->passwordInput()->hint('Password must be character or number')->label('Password Hint') ?>
                                 <?= $form->field($model, 'text')->listBox(
