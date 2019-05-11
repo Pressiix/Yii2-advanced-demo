@@ -58,9 +58,9 @@ class ExampleController extends Controller
     {
         $product_id = "";
         $product_name = "";
-        $date = "";
+        /*$date = "";
         $product_menu_list = [];
-        $product_info = [];
+        $product_info = [];*/
         $sold_data = [];
         $product_sold_info = [];
         $product_sold_summary = [];
