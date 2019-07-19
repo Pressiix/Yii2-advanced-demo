@@ -20,8 +20,8 @@ var chart = new Chart(ctx, {
         labels: [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\"],
         datasets: [{
             label: \"My First dataset\",
-            backgroundColor: '#40e0d0',
-            borderColor: '#40e0d0',
+            backgroundColor: '#4287f5',
+            borderColor: '#4287f5',
             data: [0, 10, 5, 2, 20, 30, 45],
         }]
     },
@@ -100,17 +100,17 @@ var chart = new Chart(ctx, {
             </div>   <!------------------------------------------------------------------------------->
             <div class="row">   <!----------------------------------ROW1----------------------------------------->
                 <div class="col-md-6"> <!--COLUMN1-->
-                    <div class="panel panel-red" >
-                        <div class="panel-heading">Pie Chart</div>
-                        <div class="panel-body">
+                    <div class="panel panel-red" style="position:center;">
+                        <div class="panel-heading" >Pie Chart</div>
+                        <div class="panel-body" >
                             <?= PieChartWidget::widget([
                                 'id' => 'myChart3',
                                 'labels' => ['A','B','C'],
                                 'data' => [1,2,3],
                                 'backgroundColor' => ['#f6546a','#40e0d0','#ffc125'],
                                 'borderColor' => ['#f6546a','#40e0d0','#ffc125'],
-                                'height' => '320px',
-                                'width' => '320px',
+                                'height' => '640px',
+                                'width' => '323px',
                                 'legend' => 'true'
                             ]) ?>
                         </div>

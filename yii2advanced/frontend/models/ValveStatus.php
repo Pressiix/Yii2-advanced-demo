@@ -22,32 +22,38 @@ class ValveStatus extends Model
         $valve_info = [];
         $is_connect = @fsockopen("www.google.com", 80);
         
-        if($is_connect){
+        if($is_connect)
+        {
             $url = 'https://api.netpie.io/topic'. $App . $Topic .'?retain&auth='. $Key . ':' . $Secret;
             $response = \HttpFull\Request::get($url)->send();
                 $result = json_decode($response->body, true);
                 $valve_status = $result[0]['payload'];
                 
-                if($valve_status){
-                    if($valve_status == '1'){
+                if($valve_status)
+                {
+                    if($valve_status == '1')
+                    {
                             $valve_info['valve1_status_color'] = 'badge progress-bar-success';
                             $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
                             $valve_info['valve1_status'] = 'On';
                             $valve_info['valve2_status'] = 'Off';
                     } 
-                    if($valve_status == '2'){
+                    if($valve_status == '2')
+                    {
                             $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
                             $valve_info['valve2_status_color'] = 'badge progress-bar-success';
                             $valve_info['valve1_status'] = 'Off';
                             $valve_info['valve2_status'] = 'On';
                         }  
-                        if($valve_status == '3'){
+                        if($valve_status == '3')
+                        {
                             $valve_info['valve1_status_color'] = 'badge progress-bar-success';
                             $valve_info['valve2_status_color'] = 'badge progress-bar-success';
                             $valve_info['valve1_status'] = 'On';
                             $valve_info['valve2_status'] = 'On';
                         }  
-                        if($valve_status == '4'){
+                        if($valve_status == '4')
+                        {
                             $valve_info['valve1_status_color'] = 'badge progress-bar-primary';
                             $valve_info['valve2_status_color'] = 'badge progress-bar-primary';
                             $valve_info['valve1_status'] = 'Off';
@@ -56,7 +62,8 @@ class ValveStatus extends Model
                 }
                 fclose($is_connect);
         }
-        else{
+        else
+        {
             $valve_info['valve1_status_color'] = 'badge progress-bar-danger';
             $valve_info['valve2_status_color'] = 'badge progress-bar-danger';
             $valve_info['valve1_status'] = 'Can\'t connect';
