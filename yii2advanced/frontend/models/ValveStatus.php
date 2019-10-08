@@ -17,8 +17,8 @@ class ValveStatus extends Model
     {
         $App = '/NETPIE2VALVE';
         $Topic = '/relaystat';
-        $Key = '';
-        $Secret = '';
+        $Key = 'WcTxK4EMocRJCcF';
+        $Secret = 'H0AHhsFat0L0AIBmdmR3IhN6J';
         $valve_info = [];
         $is_connect = @fsockopen("www.google.com", 80);
         
